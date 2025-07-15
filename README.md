@@ -1,12 +1,4 @@
-# Estreams Frontend
-
-Frontend repository for Estreams
-
-## Deployment
-
-The `main` branch is deployed by AWS Amplify: https://master.d39b5lly1v60vf.amplifyapp.com/, which redirects to https://www.estreams.eawag.ch/.
-
-For development, a preview is automatically generated when a Pull Request is opened.
+# MiC Analysis Frontend
 
 ## Local Test Environment
 
