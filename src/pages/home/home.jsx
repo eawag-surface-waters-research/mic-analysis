@@ -4,10 +4,15 @@ import L from "leaflet";
 import "./css/leaflet.css";
 import "../../App.css";
 import CONFIG from "../../config.json";
+import Modal from "../../components/modal";
 import eawag_logo from "../../img/eawag.png";
 import esa_logo from "../../img/esa.png";
 import lakescci_logo from "../../img/lakescci.png";
-import Modal from "../../components/modal";
+import expand_logo from "../../img/expand.png";
+import shrink_logo from "../../img/shrink.png";
+import calamiel from "../../img/calamiel.jpg";
+import odermada from "../../img/odermada.jpg";
+import AnimatedCounter from "../../components/animatedcounter";
 
 class Home extends Component {
   constructor(props) {
@@ -15,6 +20,7 @@ class Home extends Component {
     this.state = {
       modal: false,
       lakes: [],
+      mapFull: false,
     };
 
     this.targetRef = createRef();
@@ -24,12 +30,18 @@ class Home extends Component {
     if (this.targetRef.current) {
       const offsetTop =
         this.targetRef.current.getBoundingClientRect().top + window.pageYOffset;
-      const scrollTo = offsetTop - 50;
+      const scrollTo = offsetTop;
       window.scrollTo({
         top: scrollTo,
         behavior: "smooth",
       });
     }
+  };
+
+  toggleMap = () => {
+    this.setState({ mapFull: !this.state.mapFull }, () =>
+      window.dispatchEvent(new Event("resize"))
+    );
   };
 
   closeModal = (event, force = false) => {
@@ -97,7 +109,7 @@ class Home extends Component {
     this.map = L.map("map", {
       preferCanvas: true,
       zoomControl: false,
-      center: [55, -60],
+      center: [55, -34],
       zoom: 3,
       minZoom: 3,
       maxZoom: 12,
@@ -118,7 +130,7 @@ class Home extends Component {
     }, 0);
   }
   render() {
-    var { modal, lakes } = this.state;
+    var { modal, lakes, mapFull } = this.state;
     const mix = lakes.filter((x) => x.properties.shifts > 0);
     var data = {};
     if (modal) {
@@ -129,12 +141,7 @@ class Home extends Component {
       <React.Fragment>
         <div className="main">
           <div className="header">
-            <div className="name">
-              MiC Analysis
-              <div className="strap">
-                Tracking lake mixing anomalies in dimictic lakes worldwide.
-              </div>
-            </div>
+            <div className="name">MiC Analysis</div>
             <div className="logos">
               <img
                 src={lakescci_logo}
@@ -149,15 +156,29 @@ class Home extends Component {
               />
             </div>
           </div>
-          <div className="intro"></div>
-          <div className="map">
+          <div className={mapFull ? "map full" : "map"}>
+            <div className="expand" onClick={this.toggleMap}>
+              <img
+                src={mapFull ? shrink_logo : expand_logo}
+                alt={mapFull ? "Shrink" : "Expand"}
+              />
+            </div>
             <div id="map" />
-            <div className="button" onClick={this.handleScroll}>
-              Learn more
+            <div className="calltoaction">
+              <div className="count">
+                <AnimatedCounter targetNumber={21} duration={1000} />
+              </div>
+              <div className="content">
+                <div>Dimictic lakes with</div>
+                <div>mixing anomolies</div>
+                <div className="dates">2000 - 2022</div>
+              </div>
+              <div className="button" onClick={this.handleScroll}>
+                Learn more
+              </div>
             </div>
           </div>
           <div className="lakes">
-            <div className="title">Mixing Anomolies</div>
             <div className="flex">
               {mix.map((x) => (
                 <div
@@ -178,11 +199,83 @@ class Home extends Component {
               ))}
             </div>
           </div>
-          <div className="lakes">
-            <div className="title" ref={this.targetRef}>
-              About
+          <div className="text" ref={this.targetRef}>
+            <h1>About MiC Analysis</h1>
+            <p>
+              Lakes around the world are changing as the climate warms—but how
+              can we detect early warning signs of these shifts?{" "}
+            </p>
+            <p>
+              In this study, we use satellite Earth Observation (EO) data to
+              monitor lake surface temperatures and uncover clues about what’s
+              happening beneath the surface. These surface patterns reveal when
+              a lake is mixing (when water layers blend from top to bottom) or
+              stratifying (when warmer water stays on top and colder water
+              settles below). From this, we can classify each lake’s typical
+              seasonal behavior—its mixing regime.{" "}
+            </p>
+            <h2>Spotting Lake Mixing Anomalies</h2>
+            <p>
+              This portal focuses on dimictic lakes, lakes that typically mix
+              twice a year (in spring and autumn), stratify in summer, and
+              exhibit inverse stratification (coldest water on top, densest near
+              4 °C at the bottom) in winter.{" "}
+            </p>
+
+            <p>
+              We apply a method known as thermal front tracking to identify
+              thermal bars, narrow zones where near-maximum-density water
+              (~4 °C) sinks, forming boundaries between colder nearshore and
+              warmer offshore waters. While thermal front tracking has been used
+              in lake studies before, we introduce a novel application of this
+              method at global scale to detect key phases in the seasonal mixing
+              cycle.
+            </p>
+
+            <p>
+              To support this, we developed Mixing Cycle identification (MiC), a
+              framework that uses surface temperature patterns to detect the
+              presence, timing, and recurrence of thermal bars. This provides a
+              remote-sensing proxy for monitoring stratification and mixing
+              events across dimictic lakes worldwide.{" "}
+            </p>
+
+            <p>
+              Most importantly, MiC allows us to detect winter mixing anomalies,
+              instances where lakes deviate from their expected inverse
+              stratification and behave as monomictic. These anomalies may be
+              early indicators of regime shifts linked to climate change.{" "}
+            </p>
+
+            <p>
+              By identifying such changes now, we gain valuable insight into
+              which lakes are most vulnerable, helping us anticipate and respond
+              to long-term shifts in lake behavior.{" "}
+            </p>
+
+            <p>
+              More details about the method and findings can be found in our XXX
+              publication, and the underlying dataset used in this portal is
+              available at XXX.
+            </p>
+            <h2>People</h2>
+            <div className="person">
+              <img src={calamiel} alt="Elisa Calamita" />
+              <div className="name">Dr. Elisa Calamita</div>
+              <div className="title">Postdoctoral Research Associate</div>
+              <div className="university">University of Tuebingen</div>
+              <div className="email"><a href="mailto:elisa.calamita@uni-tuebingen.de">elisa.calamita@uni-tuebingen.de</a></div>
             </div>
-            <div className="space"></div>
+            <div className="person">
+              <img src={odermada} alt="Daniel Odermatt" />
+              <div className="name">Dr. Daniel Odermatt</div>
+              <div className="title">Group Leader</div>
+              <div className="university">Eawag</div>
+              <div className="email"><a href="mailto:daniel.odermatt@eawag.ch">daniel.odermatt@eawag.ch</a></div>
+            </div>
+          </div>
+          <div className="footer">
+            v0.1 | Copyright © 2025 MiC Analyis | Website developed @ Eawag
           </div>
         </div>
 
