@@ -9,10 +9,11 @@ import eawag_logo from "../../img/eawag.png";
 import esa_logo from "../../img/esa.png";
 import lakescci_logo from "../../img/lakescci.png";
 import expand_logo from "../../img/expand.png";
+import mixing_icon from "../../img/icon.png";
+import lakes_img from "../../img/satellitelakes.png";
 import shrink_logo from "../../img/shrink.png";
 import calamiel from "../../img/calamiel.jpg";
 import odermada from "../../img/odermada.jpg";
-import AnimatedCounter from "../../components/animatedcounter";
 
 class Home extends Component {
   constructor(props) {
@@ -28,9 +29,10 @@ class Home extends Component {
 
   handleScroll = () => {
     if (this.targetRef.current) {
-      const offsetTop =
-        this.targetRef.current.getBoundingClientRect().top + window.pageYOffset;
-      const scrollTo = offsetTop;
+      const scrollTo =
+        this.targetRef.current.getBoundingClientRect().top +
+        window.pageYOffset -
+        80;
       window.scrollTo({
         top: scrollTo,
         behavior: "smooth",
@@ -141,21 +143,52 @@ class Home extends Component {
       <React.Fragment>
         <div className="main">
           <div className="header">
-            <div className="name">MiC Analysis</div>
-            <div className="logos">
-              <img
-                src={lakescci_logo}
-                alt="Lakes CCI Logo"
-                style={{ height: "58px" }}
-              />
-              <img src={esa_logo} alt="ESA Logo" style={{ height: "32px" }} />
-              <img
-                src={eawag_logo}
-                alt="Eawag Logo"
-                style={{ height: "28px" }}
-              />
+            <div className="inner">
+              <div className="name">MiC Analysis</div>
+              <div className="logos">
+                <img
+                  src={lakescci_logo}
+                  alt="Lakes CCI Logo"
+                  style={{ height: "58px" }}
+                />
+                <img src={esa_logo} alt="ESA Logo" style={{ height: "32px" }} />
+                <img
+                  src={eawag_logo}
+                  alt="Eawag Logo"
+                  style={{ height: "28px" }}
+                />
+              </div>
             </div>
           </div>
+          <div className="introduction">
+            <div className="inner">
+              <h1>
+                Global Remote Sensing of Stratification and Mixing in Dimictic
+                Lakes
+              </h1>
+              <div className="subtitle">
+                <div className="number">{513}</div>{" "}
+                <div className="label">
+                  global dimictic <br />
+                  lakes analysed.
+                </div>
+              </div>
+              <div className="subtitle">
+                <div className="number">{21}</div>{" "}
+                <div className="label">
+                  lakes with mixing <br /> anomolies (2000-2022).
+                </div>
+              </div>
+              <button>Paper</button>
+              <button>Dataset</button>
+              <button onClick={this.handleScroll}>Learn more</button>
+            </div>
+
+            <div className="inner">
+              <img src={lakes_img} alt="Satellite Lakes" />
+            </div>
+          </div>
+          <div className="section-title">Explore Analysed Lakes</div>
           <div className={mapFull ? "map full" : "map"}>
             <div className="expand" onClick={this.toggleMap}>
               <img
@@ -164,20 +197,9 @@ class Home extends Component {
               />
             </div>
             <div id="map" />
-            <div className="calltoaction">
-              <div className="count">
-                <AnimatedCounter targetNumber={21} duration={1000} />
-              </div>
-              <div className="content">
-                <div>Dimictic lakes with</div>
-                <div>mixing anomolies</div>
-                <div className="dates">2000 - 2022</div>
-              </div>
-              <div className="button" onClick={this.handleScroll}>
-                Learn more
-              </div>
-            </div>
+            <div className="legend"><img src={mixing_icon} alt="Mixing Icon" /> Lakes with Mixing Anamolies</div>
           </div>
+          <div className="section-title">Lakes with Mixing Anomalies</div>
           <div className="lakes">
             <div className="flex">
               {mix.map((x) => (
@@ -192,15 +214,14 @@ class Home extends Component {
                   />
                   <div className="side">
                     <div className="name">{x.properties.name}</div>
-                    <div className="label">Anomalous years:</div>
                     <div className="years">{x.properties.years.join(", ")}</div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+          <div className="section-title">About MiC Analysis</div>
           <div className="text" ref={this.targetRef}>
-            <h1>About MiC Analysis</h1>
             <p>
               Lakes around the world are changing as the climate warms—but how
               can we detect early warning signs of these shifts?{" "}
@@ -264,14 +285,22 @@ class Home extends Component {
               <div className="name">Dr. Elisa Calamita</div>
               <div className="title">Postdoctoral Research Associate</div>
               <div className="university">University of Tuebingen</div>
-              <div className="email"><a href="mailto:elisa.calamita@uni-tuebingen.de">elisa.calamita@uni-tuebingen.de</a></div>
+              <div className="email">
+                <a href="mailto:elisa.calamita@uni-tuebingen.de">
+                  elisa.calamita@uni-tuebingen.de
+                </a>
+              </div>
             </div>
             <div className="person">
               <img src={odermada} alt="Daniel Odermatt" />
               <div className="name">Dr. Daniel Odermatt</div>
               <div className="title">Group Leader</div>
               <div className="university">Eawag</div>
-              <div className="email"><a href="mailto:daniel.odermatt@eawag.ch">daniel.odermatt@eawag.ch</a></div>
+              <div className="email">
+                <a href="mailto:daniel.odermatt@eawag.ch">
+                  daniel.odermatt@eawag.ch
+                </a>
+              </div>
             </div>
           </div>
           <div className="footer">
