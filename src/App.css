@@ -404,3 +404,75 @@ p {
   max-height: 100%;
   max-width: 100%;
 }
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --padding: 20px;
+    --margin: 40px;
+  }
+
+  .main .introduction .inner {
+    width: 100%;
+  }
+
+  .main .introduction .inner img {
+    display: none;
+  }
+
+  .main .header .logos {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 12px 0;
+    z-index: 9999999;
+  }
+
+  .main .header .logos img {
+    max-width: 30%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  :root {
+    --padding: 20px;
+    --margin: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-top: 0;
+  }
+
+  .section-title {
+    margin-bottom: 20px;
+    margin-top: 30px
+  }
+
+  .main .introduction .inner {
+    width: 100%;
+  }
+
+  .main .introduction .inner .number {
+    font-size: 40px;
+  }
+
+  .main .introduction .inner .label {
+    font-size: 16px;
+  }
+
+  .main .introduction .inner img {
+    display: none;
+  }
+
+  .main .map {
+    width: 100%;
+    margin: 0 0 var(--margin) 0;
+    border-radius: 0;
+  }
+
+  .main .map #map {
+    border-radius: 0;
+  }
+}

@@ -138,13 +138,13 @@ class Home extends Component {
     if (modal) {
       data = lakes.find((x) => x.properties.id == modal).properties;
     }
-    document.title = "MIC Analysis";
+    document.title = "MixCI Analysis";
     return (
       <React.Fragment>
         <div className="main">
           <div className="header">
             <div className="inner">
-              <div className="name">MiC Analysis</div>
+              <div className="name">MixCI Analysis</div>
               <div className="logos">
                 <img
                   src={lakescci_logo}
@@ -179,8 +179,8 @@ class Home extends Component {
                   lakes with mixing <br /> anomolies (2000-2022).
                 </div>
               </div>
-              <button>Paper</button>
-              <button>Dataset</button>
+              {/*<button>Paper</button>
+              <button>Dataset</button>*/}
               <button onClick={this.handleScroll}>Learn more</button>
             </div>
 
@@ -220,7 +220,7 @@ class Home extends Component {
               ))}
             </div>
           </div>
-          <div className="section-title">About MiC Analysis</div>
+          <div className="section-title">About MixCI Analysis</div>
           <div className="text" ref={this.targetRef}>
             <p>
               Lakes around the world are changing as the climate warms—but how
@@ -254,7 +254,7 @@ class Home extends Component {
             </p>
 
             <p>
-              To support this, we developed Mixing Cycle identification (MiC), a
+              To support this, we developed Mixing Cycle identification (MixCI), a
               framework that uses surface temperature patterns to detect the
               presence, timing, and recurrence of thermal bars. This provides a
               remote-sensing proxy for monitoring stratification and mixing
@@ -262,7 +262,7 @@ class Home extends Component {
             </p>
 
             <p>
-              Most importantly, MiC allows us to detect winter mixing anomalies,
+              Most importantly, MixCI allows us to detect winter mixing anomalies,
               instances where lakes deviate from their expected inverse
               stratification and behave as monomictic. These anomalies may be
               early indicators of regime shifts linked to climate change.{" "}
@@ -274,11 +274,11 @@ class Home extends Component {
               to long-term shifts in lake behavior.{" "}
             </p>
 
-            <p>
+            {/*<p>
               More details about the method and findings can be found in our XXX
               publication, and the underlying dataset used in this portal is
               available at XXX.
-            </p>
+            </p>*/}
             <h2>People</h2>
             <div className="person">
               <img src={calamiel} alt="Elisa Calamita" />
@@ -304,7 +304,7 @@ class Home extends Component {
             </div>
           </div>
           <div className="footer">
-            v0.1 | Copyright © 2025 MiC Analyis | Website developed @ Eawag
+            v0.1 | Copyright © 2025 MixCI Analyis | Website developed @ Eawag
           </div>
         </div>
 
