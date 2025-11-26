@@ -405,6 +405,89 @@ p {
   max-width: 100%;
 }
 
+/* Base tooltip styling */
+
+.custom-tooltip {
+  background: transparent;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 0;
+}
+
+.custom-tooltip .leaflet-tooltip-content {
+  padding: 0;
+  margin: 0;
+}
+
+/* Lake tooltip container */
+.lake-tooltip {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.lake-tooltip:hover {
+  transform: translateY(-2px);
+}
+
+.lake-tooltip h4 {
+  margin: 0;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.3px;
+}
+
+.lake-tooltip p {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Normal lake (no anomalies) */
+.lake-tooltip-normal h4 {
+  background: #2c3e50;
+  border-bottom: 2px solid #0f151b;
+}
+
+.lake-tooltip-normal p {
+  color: #2c3e50;
+  background: #f1f8f4;
+  font-weight: 500;
+}
+
+/* Alert lake (has anomalies) */
+.lake-tooltip-alert h4 {
+  background: #800000;
+  border-bottom: 2px solid #3d0101;
+}
+
+.lake-tooltip-alert .anomaly-count {
+  font-weight: 600;
+  color: #800000;
+  background: #ffebee;
+  border-bottom: 1px solid #ffcdd2;
+}
+
+.lake-tooltip-alert .click-hint {
+  color: #666;
+  font-style: italic;
+  font-size: 12px;
+  background: #f5f5f5;
+  text-align: center;
+  padding: 8px 14px;
+}
+
+.lake-tooltip-alert .click-hint::before {
+  content: "👆 ";
+  margin-right: 4px;
+}
+
 @media screen and (max-width: 1000px) {
   :root {
     --padding: 20px;

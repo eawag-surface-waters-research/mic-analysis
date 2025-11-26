@@ -83,11 +83,20 @@ class Home extends Component {
       .forEach((x) => {
         const marker = L.marker(
           [x.geometry.coordinates[1], x.geometry.coordinates[0]],
-          { icon: lakeIcon, title: x.properties.name }
+          { icon: lakeIcon }
         );
-        marker.on("click", () => {
-          this.setState({ modal: x.properties.id });
-        });
+        marker.bindTooltip(
+          `<div class="lake-tooltip lake-tooltip-normal">
+            <h4>${x.properties.name}</h4>
+            <p>No anomalies detected</p>
+          </div>`,
+          {
+            permanent: false,
+            direction: 'top',
+            opacity: 0.95,
+            className: 'custom-tooltip'
+          }
+        );
         lakesLayer.addLayer(marker);
       });
 
@@ -96,11 +105,24 @@ class Home extends Component {
       .forEach((x) => {
         const marker = L.marker(
           [x.geometry.coordinates[1], x.geometry.coordinates[0]],
-          { icon: mixIcon, title: x.properties.name }
+          { icon: mixIcon }
         );
         marker.on("click", () => {
           this.setState({ modal: x.properties.id });
         });
+        marker.bindTooltip(
+          `<div class="lake-tooltip lake-tooltip-alert">
+            <h4>${x.properties.name}</h4>
+            <p class="anomaly-count">${x.properties.shifts} mixing ${x.properties.shifts === 1 ? 'anomaly' : 'anomalies'} detected</p>
+            <p class="click-hint">Click for more info</p>
+          </div>`,
+          {
+            permanent: false,
+            direction: 'top',
+            opacity: 0.95,
+            className: 'custom-tooltip'
+          }
+        );
         mixLayer.addLayer(marker);
       });
 
