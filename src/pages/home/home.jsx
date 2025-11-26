@@ -75,8 +75,8 @@ class Home extends Component {
       className: "mix-icon",
     });
 
-    const lakesLayer = L.layerGroup().addTo(this.map);
-    const mixLayer = L.layerGroup().addTo(this.map);
+    const lakesLayer = L.featureGroup().addTo(this.map);
+    const mixLayer = L.featureGroup().addTo(this.map);
 
     lakes.features
       .filter((x) => x.properties.shifts == 0)
@@ -127,6 +127,7 @@ class Home extends Component {
       });
 
     mixLayer.eachLayer((layer) => layer.setZIndexOffset(1000));
+    this.map.fitBounds(lakesLayer.getBounds());
   };
 
   async componentDidMount() {
@@ -135,7 +136,7 @@ class Home extends Component {
       zoomControl: false,
       center: [55, -34],
       zoom: 3,
-      minZoom: 3,
+      minZoom: 1,
       maxZoom: 12,
     });
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {

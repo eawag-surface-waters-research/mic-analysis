@@ -58,7 +58,7 @@ p {
   width: 100%;
   padding: var(--padding) 0;
   box-sizing: border-box;
-  z-index: 999;
+  z-index: 999999;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -340,15 +340,16 @@ p {
 
 .modal .modal-inner {
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   box-sizing: border-box;
   height: calc(100% - 100px);
-  margin: 50px auto auto;
+  margin: 100px auto auto;
   max-width: 1200px;
-  overflow: auto;
   padding: 20px 40px;
   padding: var(--padding) calc(var(--padding) * 2);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal .modal-inner .close {
@@ -401,6 +402,21 @@ p {
 }
 
 .modal .modal-inner .content-inner img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.modal .modal-inner .description {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.modal .modal-inner .content {
+  flex: 1;
+  min-height: 0;
+}
+
+.modal .modal-inner .content img {
   max-height: 100%;
   max-width: 100%;
 }
@@ -547,6 +563,27 @@ p {
 
   .main .introduction .inner img {
     display: none;
+  }
+
+  .modal .modal-inner {
+    padding: 20px;
+  }
+
+  .modal .modal-inner h1 {
+    margin-bottom: 10px;
+  }
+
+  .modal .modal-inner .horizontal-navigation .nav-item {
+    padding: 12px 6px;
+  }
+
+  .modal .modal-inner .horizontal-navigation {
+    margin-bottom: 10px;
+  }
+
+  .modal .modal-inner .description {
+    font-size: 15px;
+    margin-bottom: 10px;
   }
 
   .main .map {
