@@ -327,7 +327,7 @@ class Home extends Component {
             </div>
           </div>
           <div className="footer">
-            v0.1 | Copyright © 2025 MixCI Analyis | Website developed @ Eawag
+            v1.0 | Copyright © 2025 MixCI Analyis | Website developed @ Eawag
           </div>
         </div>
 

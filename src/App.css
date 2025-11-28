@@ -372,6 +372,23 @@ p {
   color: black;
 }
 
+.modal .modal-inner .modal-years {
+  background-color: #f4f5f5;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.modal .modal-inner .modal-select {
+  display: inline-block;
+  width: 75px;
+  margin-left: 10px;
+  border-radius: 4px;
+  background-color: white;
+  padding: 6px;
+}
+
 .modal .modal-inner .horizontal-navigation {
   border-bottom: 1px solid grey;
   margin-bottom: 20px;
