@@ -102,7 +102,7 @@ class Modal extends Component {
                     className="modal-select"
                     onChange={(e) => this.setState({ anomalies: e.target.value })}
                   >
-                    {[...Array(23).keys()].map((i) => (<option key={i + 2000} value={i + 2000}>{i + 2000}</option>))}
+                    {[...Array(23).keys()].map((i) => (<option key={i + 2000} value={i + 2000} className={data.years.includes(i + 2000) ? "highlight" : ""}>{i + 2000}</option>))}
                   </select>
                 </div>
                 <div className="content">
