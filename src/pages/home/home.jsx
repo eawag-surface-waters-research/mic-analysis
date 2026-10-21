@@ -190,14 +190,14 @@ class Home extends Component {
                 Lakes
               </h1>
               <div className="subtitle">
-                <div className="number">{513}</div>{" "}
+                <div className="number">{641}</div>{" "}
                 <div className="label">
                   global dimictic <br />
                   lakes analysed.
                 </div>
               </div>
               <div className="subtitle">
-                <div className="number">{21}</div>{" "}
+                <div className="number">{24}</div>{" "}
                 <div className="label">
                   lakes with mixing <br /> anomolies (2000-2022).
                 </div>
